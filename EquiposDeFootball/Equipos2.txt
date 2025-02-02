@@ -1,0 +1,3 @@
+Real Madrid,Barcelona,Betis
+Cristiano Ronaldo,0,34,Delantero
+Leonardo Messi,1,30,Delantero

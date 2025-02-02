@@ -10,7 +10,7 @@ namespace EquiposDeFootball
 {
     internal class Program
     {
-        static string path = @"C:\Users\David\Desktop\esplai\ejercicios\programas\EquiposDeFootball\EquiposDeFootball\Equipos.txt";
+        static string path = @"C:\Users\David\Desktop\esplai\ejercicios\programas\EquiposDeFootball\EquiposDeFootball\Equipos2.txt";
         static List<string> listaEquipos = new List<string>();
 
         static void Main(string[] args)
@@ -44,18 +44,9 @@ namespace EquiposDeFootball
 
         static void CrearListaEquipos()
         {
-            // Leer todo el archivo
-            string[] lines = File.ReadAllLines(path);
-            foreach (string line in lines)
-            {
-                if (line != "")
-                {
-                    if (line[0] == '*') // Si la línea empieza por * es un equipo
-                    {
-                        listaEquipos.Add(line);
-                    }
-                }
-            }
+            // Guardar nombre de equipos que están en la primera linea del archivo separados por comas
+            string[] archivo = File.ReadAllLines(path);
+            listaEquipos = archivo[0].Split(',').ToList();
         }
 
         static void MostrarEquipos()
@@ -63,7 +54,7 @@ namespace EquiposDeFootball
             Console.Clear();
             foreach (string equipo in listaEquipos)
             {
-                Console.WriteLine("- " + equipo.Substring(2));
+                Console.WriteLine(equipo);
             }
             PreguntarSalirVolver();
         }
