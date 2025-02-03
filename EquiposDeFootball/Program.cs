@@ -10,7 +10,8 @@ namespace EquiposDeFootball
 {
     internal class Program
     {
-        static string path = @"C:\Users\David\Desktop\esplai\ejercicios\programas\EquiposDeFootball\EquiposDeFootball\Equipos2.txt";
+
+        static string path = @"..\..\Equipos2.txt";
         static List<string> listaEquipos = new List<string>();
 
         static void Main(string[] args)
@@ -54,6 +55,7 @@ namespace EquiposDeFootball
             Console.Clear();
             foreach (string equipo in listaEquipos)
             {
+
                 Console.WriteLine(equipo);
             }
             PreguntarSalirVolver();
