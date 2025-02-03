@@ -10,10 +10,10 @@ namespace EquiposDeFootball
 {
     internal class Program
     {
-        static string path = @"..\..\Equipos2.txt";
-        static List<string> listaEquipos = new List<string>();
+        public static string path = @"..\..\Equipos2.txt";
+        public static List<string> listaEquipos = new List<string>();
         // Crear lista de jugadores como array de arrays
-        static List<string[]> listaJugadores = new List<string[]>();
+        public static List<string[]> listaJugadores = new List<string[]>();
 
         static void Main(string[] args)
         {
@@ -22,7 +22,7 @@ namespace EquiposDeFootball
             MostrarMenu();
         }
 
-        static void MostrarMenu()
+        public static void MostrarMenu()
         {
             Console.Clear();
             Console.WriteLine("Bienvenido al gestor de tu club de football");
@@ -30,6 +30,7 @@ namespace EquiposDeFootball
             Console.WriteLine("1.- Ver equipos");
             Console.WriteLine("2.- Ver jugadores");
             Console.WriteLine("3.- Alta jugador");
+            Console.WriteLine("4.- Crear Equipo nuevo");
             string opcion = Console.ReadLine();
 
             switch (opcion)
@@ -46,6 +47,11 @@ namespace EquiposDeFootball
                     AltaJugador();
                     Console.ReadLine();
                     break;
+
+                case "4":
+                    CrearEquipos.CrearEquipo();
+                    break;
+
                 default:
                     Console.WriteLine("Opción no válida");
                     MostrarMenu();
@@ -53,17 +59,20 @@ namespace EquiposDeFootball
             }
         }
 
-        static void CrearListaEquipos()
+        public static void CrearListaEquipos()
         {
             // Guardar nombre de equipos que están en la primera linea del archivo separados por comas
             string[] archivo = File.ReadAllLines(path);
             listaEquipos = archivo[0].Split(',').ToList();
         }
 
-        static void CrearListaJugadores()
+        public static void CrearListaJugadores()
         {
             string[] archivo = File.ReadAllLines(path);
             int i = 1;
+
+            listaJugadores.Clear();
+
             while (i < archivo.Length)
             {
                 // Crear array de jugadores
@@ -73,7 +82,7 @@ namespace EquiposDeFootball
             }
         }
 
-        static void MostrarEquipos()
+        public static void MostrarEquipos()
         {
             int selector = 1;
             foreach (string equipo in listaEquipos)
@@ -84,7 +93,7 @@ namespace EquiposDeFootball
             PreguntarSalirVolver();
         }
 
-        static void MostrarJugadores()
+        public static void MostrarJugadores()
         {
             for (int i = 0; i < listaJugadores.Count(); i++)
             {
@@ -94,7 +103,7 @@ namespace EquiposDeFootball
             PreguntarSalirVolver();
         }
 
-        static void PreguntarSalirVolver()
+        public static void PreguntarSalirVolver()
         {
             Console.WriteLine("s. Salir");
             Console.WriteLine("v. Volver");
