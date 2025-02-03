@@ -10,7 +10,7 @@ namespace EquiposDeFootball
 {
     internal class Program
     {
-        static string path = @"C:\Users\David\Desktop\esplai\ejercicios\programas\EquiposDeFootball\EquiposDeFootball\Equipos2.txt";
+        static string path = @"..\..\Equipos2.txt";
         static List<string> listaEquipos = new List<string>();
         // Crear lista de jugadores como array de arrays
         static List<string[]> listaJugadores = new List<string[]>();
@@ -92,7 +92,6 @@ namespace EquiposDeFootball
                 Console.WriteLine(listaJugadores[i][0]);
             }
             PreguntarSalirVolver();
-
         }
 
         static void PreguntarSalirVolver()
@@ -112,26 +111,26 @@ namespace EquiposDeFootball
             Console.WriteLine("Introduce el nombre del jugador: ");
             string nombreNuevo = Console.ReadLine();
 
-            Console.WriteLine("Selecciona el equipo del jugador: ");
-            MostrarEquipos();
-            int equipoSeleccionado = Convert.ToInt32(Console.ReadLine()) - 1;
+            Console.WriteLine("Introduce el equipo: ");
+            int selector = 1;
 
-            if (equipoSeleccionado < 0 || equipoSeleccionado >= listaEquipos.Count)
+            foreach (string equipo in listaEquipos)
             {
-                Console.WriteLine("Selección no válida. Inténtalo de nuevo.");
-                return;
+                Console.WriteLine(selector.ToString() + " - " + equipo);
+                selector++;
             }
 
-            string nuevoJugador = nombreNuevo + "," + listaEquipos[equipoSeleccionado];
+            int equipoNuevo = Convert.ToInt32(Console.ReadLine()) - 1;
 
-            // Agregar a la lista local
-            listaJugadores.Add(new string[] { nombreNuevo, listaEquipos[equipoSeleccionado] });
+            string nuevoJugador ="\n" + nombreNuevo + "," + equipoNuevo.ToString();
 
-            // Guardar en el archivo con salto de línea
-            File.AppendAllText(path, "\n" + nuevoJugador);
+            // Agregar en nueva linea al archivo
+            File.AppendAllText(path, nuevoJugador);
 
+            listaJugadores.Add(new string[] { nombreNuevo, equipoNuevo.ToString() });
 
             Console.WriteLine("Jugador añadido correctamente.");
+            PreguntarSalirVolver();
         }
 
     }
