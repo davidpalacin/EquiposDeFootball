@@ -1,0 +1,21 @@
+* Real Madrid
+1. Alfredo
+- Edad: 20
+- Posición: Defensa
+2. David
+- Edad: 25
+- posición: Central
+3. Arnaldo
+- Edad: 28
+- Posición: Delantero
+
+* Barcelona
+1. XDDD
+- edad 20
+- posición gradas
+2. David
+- edad 25
+- posición medio
+3. Arnaldo
+- edad 28
+- posición delantero
