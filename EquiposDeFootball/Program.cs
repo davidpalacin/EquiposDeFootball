@@ -104,6 +104,8 @@ namespace EquiposDeFootball
                 }
             }
 
+
+
             Console.Clear();
             Console.WriteLine("JUGADORES DEL EQUIPO:  " + listaEquipos[opcion]);
             selector = 1;
