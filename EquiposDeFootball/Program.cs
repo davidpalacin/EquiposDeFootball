@@ -81,6 +81,29 @@ namespace EquiposDeFootball
                 Console.WriteLine(selector.ToString() + " - " + equipo);
                 selector++;
             }
+
+            Console.WriteLine("Selecciona un equipo para ver sus jugadores");
+            int opcion = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            List<string[]> jugadoresEnEquipo = new List<string[]>();
+
+            for (int i = 0; i < listaJugadores.Count(); i++)
+            {
+                if (listaJugadores[i][1] == opcion.ToString())
+                {
+                    jugadoresEnEquipo.Add(listaJugadores[i]);
+                }
+            }
+
+            Console.Clear();
+            Console.WriteLine("JUGADORES DEL EQUIPO:  " + listaEquipos[opcion]);
+            selector = 1;
+            foreach (string[] jugador in jugadoresEnEquipo)
+            {
+                Console.WriteLine(selector.ToString() + " - " + jugador[0]);
+                selector++;
+            }
+
             PreguntarSalirVolver();
         }
 
@@ -96,6 +119,7 @@ namespace EquiposDeFootball
 
         static void PreguntarSalirVolver()
         {
+            Console.WriteLine();
             Console.WriteLine("s. Salir");
             Console.WriteLine("v. Volver");
             string opcion = Console.ReadLine();
