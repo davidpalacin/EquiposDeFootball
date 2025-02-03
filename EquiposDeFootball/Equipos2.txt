@@ -1,3 +1,8 @@
 Real Madrid,Barcelona,Betis
-Cristiano Ronaldo,0,34,Delantero
-Leonardo Messi,1,30,Delantero
+Cristiano Ronaldo,0
+Leonardo Messi,1
+Arnaldo,2
+David Palacin,1
+pepito fernandez,2
+jaimito perez,0
+manolo paredes,1

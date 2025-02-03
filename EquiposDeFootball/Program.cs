@@ -10,16 +10,15 @@ namespace EquiposDeFootball
 {
     internal class Program
     {
-
         static string path = @"..\..\Equipos2.txt";
         static List<string> listaEquipos = new List<string>();
+        // Crear lista de jugadores como array de arrays
+        static List<string[]> listaJugadores = new List<string[]>();
 
         static void Main(string[] args)
         {
-            // TODO: Alta de equipo nuevo
-            // TODO: Alta de jugador nuevo
-            // TODO: Partido entre equipos
             CrearListaEquipos();
+            CrearListaJugadores();
             MostrarMenu();
         }
 
@@ -30,15 +29,26 @@ namespace EquiposDeFootball
             Console.WriteLine("Selecciona la acción que deseas realizar: ");
             Console.WriteLine("1.- Ver equipos");
             Console.WriteLine("2.- Ver jugadores");
+            Console.WriteLine("3.- Alta jugador");
             string opcion = Console.ReadLine();
 
             switch (opcion)
             {
                 case "1":
+                    Console.Clear();
                     MostrarEquipos();
                     break;
                 case "2":
+                    Console.Clear();
                     MostrarJugadores();
+                    break;
+                case "3":
+                    AltaJugador();
+                    Console.ReadLine();
+                    break;
+                default:
+                    Console.WriteLine("Opción no válida");
+                    MostrarMenu();
                     break;
             }
         }
@@ -50,37 +60,38 @@ namespace EquiposDeFootball
             listaEquipos = archivo[0].Split(',').ToList();
         }
 
+        static void CrearListaJugadores()
+        {
+            string[] archivo = File.ReadAllLines(path);
+            int i = 1;
+            while (i < archivo.Length)
+            {
+                // Crear array de jugadores
+                string[] jugadores = archivo[i].Split(',');
+                listaJugadores.Add(jugadores);
+                i++;
+            }
+        }
+
         static void MostrarEquipos()
         {
-            Console.Clear();
+            int selector = 1;
             foreach (string equipo in listaEquipos)
             {
-
-                Console.WriteLine(equipo);
+                Console.WriteLine(selector.ToString() + " - " + equipo);
+                selector++;
             }
             PreguntarSalirVolver();
         }
 
         static void MostrarJugadores()
         {
-            Console.Clear();
-            // Leer todo el archivo
-            string[] lines = File.ReadAllLines(path);
-            foreach (string line in lines)
+            for (int i = 0; i < listaJugadores.Count(); i++)
             {
-                if (line != "")
-                {
-                    // Si empieza con un numero es un jugador
-                    // Eliminar el numero para dejar solo su nombre
-                    if (Char.IsDigit(line[0]))
-                    {
-                        // Eliminar el número del primer caracter
-                        Console.WriteLine("- " + line.Substring(3));
-                    }
-                }
+                // Cada jugador es un array
+                Console.WriteLine(listaJugadores[i][0]);
             }
             PreguntarSalirVolver();
-
         }
 
         static void PreguntarSalirVolver()
@@ -92,6 +103,34 @@ namespace EquiposDeFootball
                 Environment.Exit(0);
             else
                 MostrarMenu();
+        }
+
+        static void AltaJugador()
+        {
+            Console.Clear();
+            Console.WriteLine("Introduce el nombre del jugador: ");
+            string nombreNuevo = Console.ReadLine();
+
+            Console.WriteLine("Introduce el equipo: ");
+            int selector = 1;
+
+            foreach (string equipo in listaEquipos)
+            {
+                Console.WriteLine(selector.ToString() + " - " + equipo);
+                selector++;
+            }
+
+            int equipoNuevo = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            string nuevoJugador ="\n" + nombreNuevo + "," + equipoNuevo.ToString();
+
+            // Agregar en nueva linea al archivo
+            File.AppendAllText(path, nuevoJugador);
+
+            listaJugadores.Add(new string[] { nombreNuevo, equipoNuevo.ToString() });
+
+            Console.WriteLine("Jugador añadido correctamente.");
+            PreguntarSalirVolver();
         }
 
     }
