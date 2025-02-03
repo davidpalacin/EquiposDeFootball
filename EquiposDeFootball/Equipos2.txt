@@ -3,10 +3,8 @@ Cristiano Ronaldo,0
 Leonardo Messi,1
 Arnaldo,2
 David Palacin,1
-pepito fernandez,2
 jaimito perez,0
 manolo paredes,1
 mongui,1
 pedro,5
 pedri,7
-alberto,6

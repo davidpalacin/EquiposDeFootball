@@ -31,6 +31,7 @@ namespace EquiposDeFootball
             Console.WriteLine("2.- Ver jugadores");
             Console.WriteLine("3.- Alta jugador");
             Console.WriteLine("4.- Crear Equipo nuevo");
+            Console.WriteLine("5.- Baja jugador");
             string opcion = Console.ReadLine();
 
             switch (opcion)
@@ -47,11 +48,12 @@ namespace EquiposDeFootball
                     AltaJugador();
                     Console.ReadLine();
                     break;
-
                 case "4":
                     CrearEquipos.CrearEquipo();
                     break;
-
+                case "5":
+                    BajaJugador();
+                    break;
                 default:
                     Console.WriteLine("Opción no válida");
                     MostrarMenu();
@@ -168,5 +170,30 @@ namespace EquiposDeFootball
             PreguntarSalirVolver();
         }
 
+        static void BajaJugador()
+        {
+            Console.Clear();
+            Console.WriteLine("Escoge al jugador que quieres dar de baja");
+            int selector = 1;
+
+            foreach (string[] jugador in listaJugadores)
+            {
+                Console.WriteLine(selector.ToString() + " - " + jugador[0]);
+                selector++;
+            }
+
+            int eleccion = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            // Eliminar jugador de la lista de jugadores
+            listaJugadores.RemoveAt(eleccion);
+
+            // Eliminar jugador del archivo
+            string[] archivo = File.ReadAllLines(path);
+            archivo = archivo.Where((source, index) => index != eleccion + 1).ToArray();
+            File.WriteAllLines(path, archivo);
+
+            Console.WriteLine("Jugador eliminado correctamente.");
+            PreguntarSalirVolver();
+        }
     }
 }
