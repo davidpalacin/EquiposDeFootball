@@ -30,8 +30,9 @@ namespace EquiposDeFootball
             Console.WriteLine("1.- Ver equipos");
             Console.WriteLine("2.- Ver jugadores");
             Console.WriteLine("3.- Alta jugador");
-            Console.WriteLine("4.- Crear Equipo nuevo");
-            Console.WriteLine("5.- Baja jugador");
+            Console.WriteLine("4.- Baja jugador");
+            Console.WriteLine("5.- Crear Equipo nuevo");
+            Console.WriteLine("6.- Eliminar un Equipo");
             string opcion = Console.ReadLine();
 
             switch (opcion)
@@ -49,10 +50,13 @@ namespace EquiposDeFootball
                     Console.ReadLine();
                     break;
                 case "4":
-                    CrearEquipos.CrearEquipo();
+                    BajaJugador();
                     break;
                 case "5":
-                    BajaJugador();
+                    GestionarEquipos.CrearEquipo();
+                    break;
+                case "6":
+                    GestionarEquipos.EliminarEquipo();
                     break;
                 default:
                     Console.WriteLine("Opción no válida");
